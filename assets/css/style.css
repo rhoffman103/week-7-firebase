@@ -1,0 +1,11 @@
+.jumbotron {
+    max-height: 165px;
+}
+
+.table-row {
+    border-bottom: 1px rgb(227,227,227) solid;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}

@@ -1,16 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>OMG TRAINS!</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 </head>
+
 <body>
+
+    <div class="container">
+
+        <div class="jumbotron jumbotron-fluid p-4 mb-4">
+            <div class="container text-center">
+                <h1 class="display-4">Train Time</h1>
+                <p class="lead">Plan the schedule.</p>
+            </div>
+        </div>
+
+        <!-- TRAIN TABLE -->
+        <div class="card mb-4">
+            <h5 class="card-header">Current Train Schedule</h5>
+            <div class="card-body">
+                <div class="d-flex p-2 justify-content-between table-row">
+                    <h6 class="card-text">Train Name</h6>
+                    <h6 class="card-text">Destination</h6>
+                    <h6 class="card-text">Frequency (min)</h6>
+                    <h6 class="card-text">Next Arrival</h6>
+                    <h6 class="card-text">Minutes Away</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Train FORM -->
+        <div class="card mb-4">
+            <h5 class="card-header">Current Train Schedule</h5>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="trainName">Train Name</label>
+                        <input type="text" class="form-control" id="trainName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="text" class="form-control" id="desination" placeholder="">
+                    </div>
+                    <div class="form-group">
+                            <label for="firstTrainTime">First Train Time (hh:mm - military time)</label>
+                            <input type="text" class="form-control" id="firstTrainTime" placeholder="">
+                    </div>
+                    <div class="form-group">
+                            <label for="frequency">frequency</label>
+                            <input type="text" class="form-control" id="frequency" placeholder="">
+                    </div>
+                    <button type="button" class="btn btn-secondary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
 
     <script src="assets/javascript/main.js" type="text/javascript"></script>
 </body>
+
 </html>
