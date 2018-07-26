@@ -25,23 +25,9 @@
             </div>
         </div>
 
-        <!-- TRAIN TABLE -->
-        <div class="card mb-4">
-            <h5 class="card-header">Current Train Schedule</h5>
-            <div class="card-body">
-                <div class="d-flex p-2 justify-content-between table-row">
-                    <h6 class="card-text">Train Name</h6>
-                    <h6 class="card-text">Destination</h6>
-                    <h6 class="card-text">Frequency (min)</h6>
-                    <h6 class="card-text">Next Arrival</h6>
-                    <h6 class="card-text">Minutes Away</h6>
-                </div>
-            </div>
-        </div>
-
         <!-- Train FORM -->
         <div class="card mb-4">
-            <h5 class="card-header">Current Train Schedule</h5>
+            <h5 class="card-header">Add Train</h5>
             <div class="card-body">
                 <form>
                     <div class="form-group">
@@ -50,18 +36,32 @@
                     </div>
                     <div class="form-group">
                         <label for="destination">Destination</label>
-                        <input type="text" class="form-control" id="desination" placeholder="">
+                        <input type="text" class="form-control" id="destination" placeholder="">
                     </div>
                     <div class="form-group">
-                            <label for="firstTrainTime">First Train Time (hh:mm - military time)</label>
-                            <input type="text" class="form-control" id="firstTrainTime" placeholder="">
+                        <label for="firstTrainTime">First Train Time (hh:mm - military time)</label>
+                        <input type="text" class="form-control" id="firstTrainTime" placeholder="">
                     </div>
                     <div class="form-group">
-                            <label for="frequency">frequency</label>
-                            <input type="text" class="form-control" id="frequency" placeholder="">
+                        <label for="frequency">frequency</label>
+                        <input type="text" class="form-control" id="frequency" placeholder="">
                     </div>
-                    <button type="button" class="btn btn-secondary">Submit</button>
+                    <button type="button" class="btn btn-secondary submit-btn">Submit</button>
                 </form>
+            </div>
+        </div>
+
+        <!-- TRAIN TABLE -->
+        <div class="card mb-4">
+            <h5 class="card-header">Current Train Schedule</h5>
+            <div class="card-body" id="trainTable">
+                <div class="row p-2 table-row">
+                    <h6 class="card-text col">Train Name</h6>
+                    <h6 class="card-text col">Destination</h6>
+                    <h6 class="card-text col">Frequency (min)</h6>
+                    <h6 class="card-text col">Next Arrival</h6>
+                    <h6 class="card-text col">Minutes Away</h6>
+                </div>
             </div>
         </div>
 
