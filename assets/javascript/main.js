@@ -22,10 +22,10 @@ $(document).ready(function() {
   var minutesAway  = "";
   
   // APPEND TRAIN
-  const appendTrain = function(snap) {
+  const appendTrain = function(snap, minAway) {
     var trainDiv = $("<div>").addClass("row p-2 table-row")
     // var p = $("<p>").addClass("card-text col")
-    console.log(snap);
+
     $("#trainTable").append(trainDiv);
     trainDiv.append($("<p>").addClass("card-text col").text(snap.name))
       .append($("<p>").addClass("card-text col").text(snap.destination))
@@ -33,6 +33,17 @@ $(document).ready(function() {
       .append($("<p>").addClass("card-text col").text(nextArrival))
       .append($("<p>").addClass("card-text col").text(minutesAway));
   }
+
+  // GET NEXT ARRIVAL & MINUTES AWAY
+  const getNextArrival = function(snap) {
+    var currentTime = moment(); //.format("hh:mm");
+    var firstTT = moment(snap.firstRunTime, "hh:mm");
+    var duration = moment.duration(currentTime.diff(firstTT))
+    var diff = currentTime.diff(firstTT, "minutes");
+    var remainder = diff % snap.frequency; // minutes past in current interval
+    minutesAway = snap.frequency - remainder;
+    nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
+  };
   
   // Events
   $(".submit-btn").on("click", function() {
@@ -52,8 +63,12 @@ $(document).ready(function() {
 
   // Firebase watcher
   database.ref().on("child_added", function(childSnapshot) {
+    getNextArrival(childSnapshot.val());
     appendTrain(childSnapshot.val());
-  });
-  
 
+    // Handle the errors
+    }, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    });
+  
 });
