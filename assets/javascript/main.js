@@ -23,15 +23,14 @@ $(document).ready(function() {
   
   // APPEND TRAIN
   const appendTrain = function(snap, minAway) {
-    var trainDiv = $("<div>").addClass("row p-2 table-row")
-    // var p = $("<p>").addClass("card-text col")
+    var trainBody = $("<tr>");
 
-    $("#trainTable").append(trainDiv);
-    trainDiv.append($("<p>").addClass("card-text col").text(snap.name))
-      .append($("<p>").addClass("card-text col").text(snap.destination))
-      .append($("<p>").addClass("card-text col").text(snap.frequency))
-      .append($("<p>").addClass("card-text col").text(nextArrival))
-      .append($("<p>").addClass("card-text col").text(minutesAway));
+    $("tbody").append(trainBody);
+    trainBody.append($("<th>").attr("scope", "col").text(snap.name))
+    .append($("<th>").attr("scope", "col").text(snap.destination))
+    .append($("<th>").attr("scope", "col").text(snap.frequency))
+    .append($("<th>").attr({scope: "col", id: "next-arrival"}).text(nextArrival))
+    .append($("<th>").attr({scope: "col", id: "minutes-away"}).text(minutesAway));
   }
 
   // GET NEXT ARRIVAL & MINUTES AWAY
@@ -40,7 +39,7 @@ $(document).ready(function() {
     var firstTT = moment(snap.firstRunTime, "hh:mm");
     var duration = moment.duration(currentTime.diff(firstTT))
     var diff = currentTime.diff(firstTT, "minutes");
-    var remainder = diff % snap.frequency; // minutes past in current interval
+    var remainder = diff % snap.frequency; // minutes passed in current interval
     minutesAway = snap.frequency - remainder;
     nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
   };
