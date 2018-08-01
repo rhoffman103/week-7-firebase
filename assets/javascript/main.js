@@ -29,9 +29,9 @@ $(document).ready(function() {
     trainBody.append($("<th>").attr("scope", "col").text(snap.name))
     .append($("<th>").attr("scope", "col").text(snap.destination))
     .append($("<th>").attr("scope", "col").text(snap.frequency))
-    .append($("<th>").attr({scope: "col", id: "next-arrival"}).text(nextArrival))
-    .append($("<th>").attr({scope: "col", id: "minutes-away"}).text(minutesAway));
-  }
+    .append($("<th>").attr({scope: "col", id: snap.name.replace(/\s/g, '-') + "-next-arrival"}).text(nextArrival))
+    .append($("<th>").attr({scope: "col", id: snap.name.replace(/\s/g, '-') + "-minutes-away"}).text(minutesAway));
+  };
 
   // GET NEXT ARRIVAL & MINUTES AWAY
   const getNextArrival = function(snap) {
@@ -42,7 +42,21 @@ $(document).ready(function() {
     var remainder = diff % snap.frequency; // minutes passed in current interval
     minutesAway = snap.frequency - remainder;
     nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
+    minutesAway += ":" + (60 - duration._data.seconds);
+    // console.log(snap)
   };
+
+  // Updates next arrival and minutes away
+  function update() {
+    database.ref().on("child_added", function(childSnapshot) {
+      getNextArrival(childSnapshot.val());
+      var attrName = childSnapshot.val().name.replace(/\s/g, '-');
+      $("#" + attrName + "-next-arrival").text(nextArrival);
+      $("#" + attrName + "-minutes-away").text(minutesAway);
+    })
+  };
+  
+  setInterval(update, 1000);
   
   // Events
   $(".submit-btn").on("click", function() {
